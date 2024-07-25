@@ -7,7 +7,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../../style/swiperCustomCss.css';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 
 const MainSwiper: React.FC = () => {
     return (

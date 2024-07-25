@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from '../../components/Head';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import CellPeopleTable from '../../components/cell_detail_c/CellPeopleTable';
 import { getPortfolioData } from '../../api/firebase';
 

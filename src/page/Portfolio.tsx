@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from '../components/Head';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import MainSwiper from '../components/portfolio_c/MainSwiper';
 import PortfolioCell from '../components/portfolio_c/PortfolioCell';
 import Foot from '../components/Foot';

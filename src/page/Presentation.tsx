@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from '../components/Head';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import Foot from '../components/Foot';
 import PdfViewer from '../components/PdfViewer';
 

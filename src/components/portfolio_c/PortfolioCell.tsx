@@ -1,6 +1,6 @@
 import React from 'react';
 import PortfolioCellSRC from './PortfolioCellSRC';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 
 interface ImageData {
     src: string;
