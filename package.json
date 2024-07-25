@@ -16,31 +16,30 @@
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^10.0.0",
     "@wyw-in-js/webpack-loader": "^0.5.4",
     "axios": "^1.7.2",
     "craco-linaria": "^1.1.2",
     "firebase": "^10.12.4",
     "http-proxy-middleware": "^3.0.0",
     "pdfjs": "^2.5.3",
-    "pdfjs-dist": "^4.4.168",
+    "pdfjs-dist": "3.11.174",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
-    "react-pdf": "^9.1.0",
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
     "react-three": "^0.9.7",
     "styled-components": "^6.1.12",
     "swiper": "^11.1.7",
     "typescript": "^5.5.4",
-    "uuid": "^10.0.0",
     "web-vitals": "^4.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -60,5 +59,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "pdfjs-dist": "3.11.174"
   }
 }

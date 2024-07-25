@@ -34,3 +34,22 @@ module.exports = {
     },
   },
 };
+
+// module.exports = {
+//   plugins: [{ plugin: require('craco-linaria') }],
+// };
+
+// const { resolve } = require('path');
+// const { BabelMultiTargetPlugin } = require('webpack-babel-multi-target-plugin');
+
+// module.exports = {
+//   webpack: {
+//     plugins: [
+//       new BabelMultiTargetPlugin({
+//         babel: {
+//           plugins: ['@linaria']
+//         }
+//       })
+//     ]
+//   }
+// };
