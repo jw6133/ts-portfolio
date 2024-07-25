@@ -16,6 +16,12 @@ import {
   where,
   DocumentData,
 } from "firebase/firestore";
+import {
+  getDatabase,
+  ref as databaseRef,
+  get,
+  child,
+} from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
@@ -35,6 +41,7 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 const firestore = getFirestore(app);
+const database = getDatabase(app);
 const storage = getStorage(app);
 
 // 자동 로그인 방지
@@ -128,14 +135,20 @@ export async function uploadFile(file: File): Promise<string> {
   return getDownloadURL(storageReference);
 }
 
-// 포트폴리오 정보 가져오기
+// 포트폴리오 정보 가져오기 (Realtime Database 사용)
 export async function getPortfolioData(): Promise<DocumentData[]> {
   try {
     console.log("Fetching portfolio data...");
-    const querySnapshot = await getDocs(collection(firestore, "portfolio_data"));
-    const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    console.log("Fetched data: ", data);
-    return data;
+    const dbRef = databaseRef(database);
+    const snapshot = await get(child(dbRef, 'portfolio_data'));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log("Fetched data: ", data);
+      return Object.keys(data).map(key => ({ id: key, ...data[key] }));
+    } else {
+      console.log("No data available");
+      return [];
+    }
   } catch (error) {
     console.error("Error fetching portfolio data: ", error);
     return [];
