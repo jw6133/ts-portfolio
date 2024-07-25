@@ -32,7 +32,6 @@ const Portfolio1: React.FC = () => {
         return (
             <LoadingWrapper>
                 <img src='photo/loading.gif' alt="Loading..."/>
-                <span>loading... please wait</span>
             </LoadingWrapper>
         );
     }
