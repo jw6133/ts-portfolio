@@ -3,6 +3,7 @@ import Head from '../components/Head';
 import Foot from '../components/Foot';
 import { styled } from '@linaria/react';
 import Human from '../components/resume_c/Human';
+import Skill from '../components/resume_c/Skill';
 
 type ResumeProps = {};
 
@@ -14,6 +15,7 @@ export default function Resume(props: ResumeProps) {
         <Title>Resume</Title>
         <WhiteBox className="mainText">이력서</WhiteBox>
         <Human />
+        <Skill/>
       </Container>
       <Foot />
     </>
@@ -23,7 +25,7 @@ export default function Resume(props: ResumeProps) {
 export const Container = styled.div`
   width: 80%;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 60px;
   background-color: #e8ecef;
   padding: 20px;
 
@@ -44,9 +46,9 @@ export const Title = styled.span`
 `;
 
 export const WhiteBox = styled.div`
-  width: 100%;
+  width: 90%;
   background-color: white;
-  padding: 20px;
+  padding: 3%;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;

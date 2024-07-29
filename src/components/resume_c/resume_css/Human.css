@@ -1,50 +1,58 @@
-/* Human.css */
 .sectionName {
-    display: block;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .innerBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .name,
-  .birth,
-  .sex,
-  .email,
-  .phone,
-  .address {
-    width: 180px; /* 기본 너비 */
-    height: 60px; /* 기본 높이 */
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #e0e0e0;
-  }
-  
-  .photo {
-    width: 120px;
-    height: 120px;
-    border: 1px solid #e0e0e0;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .photo img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.name,
+.birth,
+.sex,
+.email,
+.phone,
+.phone2,
+.address {
+  display: inline-block;
+  height: 60px; /* 기본 높이 */
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  margin-right: 10px;
+}
+
+.name,
+.birth,
+.phone,
+.phone2 {
+  width: 180px;
+}
+
+.sex {
+  width: 113px;
+}
+
+.email {
+  width: 274px;
+}
+
+.address {
+  width: 399px;
+}
+.phone2{
+  position: relative;
+  top:16px;
+}
+.photo {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.photo img {
+  max-width: 100%;
+  max-height: 100%;
+}
