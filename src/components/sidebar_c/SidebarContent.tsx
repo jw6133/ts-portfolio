@@ -80,6 +80,7 @@ const SideContentWrapper = styled.div`
             right:-1%;
             top:35%;
             font-size:48px;
+            border:none;
         }
         .status{
             display:flex;
