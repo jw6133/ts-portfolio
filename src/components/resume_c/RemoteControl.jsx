@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-scroll';
-import { GiClothes } from "react-icons/gi";
-import { FaCloudSunRain } from "react-icons/fa";
-import { IoSubway } from "react-icons/io5";
-import { TbBusStop } from "react-icons/tb";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { LuPencil } from "react-icons/lu";
+import { HiOutlineAcademicCap } from "react-icons/hi";
+import { PiBagSimpleBold } from "react-icons/pi";
 
 export function RemoteControl() {
     const links = [
-        { to: '1', icon: <GiClothes />, label: 'Clothing' },
-        { to: '2', icon: <FaCloudSunRain />, label: 'Weather' },
-        { to: '3', icon: <IoSubway />, label: 'Subway' },
-        { to: '4', icon: <TbBusStop />, label: 'Bus Stop' },
+        { to: '1', icon: <LuLayoutDashboard/>, label: '인적사항' },
+        { to: '2', icon: <LuPencil />, label: '스킬' },
+        { to: '3', icon: <HiOutlineAcademicCap />, label: '학력' },
+        { to: '4', icon: <PiBagSimpleBold />, label: '인턴&대외활동' },
     ];
 
     const [scroll, setScroll] = useState(false);
