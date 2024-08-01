@@ -3,14 +3,23 @@ import { styled } from '@linaria/react';
 
 interface CoverLetterCellProps {
   id: number;
+  title: string;
   value: string;
+  onTitleChange: (id: number, title: string) => void;
   onChange: (id: number, value: string) => void;
   onDelete: (id: number) => void;
 }
 
-const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, value, onChange, onDelete }) => {
+const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, title, value, onTitleChange, onChange, onDelete }) => {
   return (
     <CoverLetterCellWrapper>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => onTitleChange(id, e.target.value)}
+        placeholder="제목을 입력하세요"
+        className="titleInput"
+      />
       <textarea
         value={value}
         onChange={(e) => onChange(id, e.target.value)}
@@ -25,12 +34,16 @@ const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, value, onChange, 
 };
 
 const CoverLetterCellList: React.FC = () => {
-  const [inputs, setInputs] = useState<{ id: number; value: string }[]>([]);
+  const [inputs, setInputs] = useState<{ id: number; title: string; value: string }[]>([]);
   const [nextId, setNextId] = useState(1);
 
   const handleAdd = () => {
-    setInputs([...inputs, { id: nextId, value: '' }]);
+    setInputs([...inputs, { id: nextId, title: '', value: '' }]);
     setNextId(nextId + 1);
+  };
+
+  const handleTitleChange = (id: number, title: string) => {
+    setInputs(inputs.map(input => (input.id === id ? { ...input, title } : input)));
   };
 
   const handleChange = (id: number, value: string) => {
@@ -47,7 +60,9 @@ const CoverLetterCellList: React.FC = () => {
         <CoverLetterCell
           key={input.id}
           id={input.id}
+          title={input.title}
           value={input.value}
+          onTitleChange={handleTitleChange}
           onChange={handleChange}
           onDelete={handleDelete}
         />
@@ -73,6 +88,15 @@ const CoverLetterCellWrapper = styled.div`
   border-radius: 5px;
   padding: 10px;
   background-color: #f9f9f9;
+
+  .titleInput {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+    font-weight: bold;
+  }
 
   textarea {
     width: 100%;
