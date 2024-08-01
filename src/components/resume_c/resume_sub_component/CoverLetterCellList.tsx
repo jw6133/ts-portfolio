@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@linaria/react';
+
+const initialData = [
+  { id: 1, title: '첫 번째 제목', value: '첫 번째 내용' },
+  { id: 2, title: '두 번째 제목', value: '두 번째 내용' },
+];
 
 interface CoverLetterCellProps {
   id: number;
@@ -35,7 +40,11 @@ const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, title, value, onT
 
 const CoverLetterCellList: React.FC = () => {
   const [inputs, setInputs] = useState<{ id: number; title: string; value: string }[]>([]);
-  const [nextId, setNextId] = useState(1);
+  const [nextId, setNextId] = useState(3); // 초기 데이터에 맞춰 nextId를 설정합니다.
+
+  useEffect(() => {
+    setInputs(initialData);
+  }, []);
 
   const handleAdd = () => {
     setInputs([...inputs, { id: nextId, title: '', value: '' }]);
