@@ -4,6 +4,9 @@ import Foot from '../components/Foot';
 import { styled } from '@linaria/react';
 import Human from '../components/resume_c/Human';
 import Skill from '../components/resume_c/Skill';
+import WantJob from '../components/resume_c/WantJob';
+import CoverLetter from '../components/resume_c/CoverLetter';
+import ResumeEtc from '../components/resume_c/ResumeEtc';
 
 type ResumeProps = {};
 
@@ -15,7 +18,10 @@ export default function Resume(props: ResumeProps) {
         <Title>Resume</Title>
         <WhiteBox className="mainText">이력서</WhiteBox>
         <Human />
+        <WantJob/>
         <Skill/>
+        <ResumeEtc/>
+        <CoverLetter/>
       </Container>
       <Foot />
     </>
