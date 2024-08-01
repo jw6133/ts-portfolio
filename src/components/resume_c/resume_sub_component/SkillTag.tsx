@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import {styled} from '@linaria/react';
+import React, { useState, useEffect } from 'react';
+import { styled } from '@linaria/react';
+
+const protoTag = ["aaa", "bbb"];
 
 const SkillTag: React.FC = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
 
+  useEffect(() => {
+    setTags(protoTag);
+  }, []);
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && inputValue.trim() !== '') {
+    if ((event.key === 'Enter' || event.key === 'Comma') && inputValue.trim() !== '') {
       event.preventDefault();
       if (!tags.includes(inputValue.trim())) {
         setTags([...tags, inputValue.trim()]);

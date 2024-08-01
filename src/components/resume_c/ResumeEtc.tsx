@@ -23,21 +23,21 @@ export default function ResumeEtc(props: ResumeEtcProps) {
                 <DisorderItem>
                     <label htmlFor="disorder">장애 :</label>
                     <select id="disorder" name="disorder">
+                        <option value="6">6급</option>
                         <option value="none">없음</option>
                         <option value="1">1급</option>
                         <option value="2">2급</option>
                         <option value="3">3급</option>
                         <option value="4">4급</option>
                         <option value="5">5급</option>
-                        <option value="6">6급</option>
                     </select>
                 </DisorderItem>
                 <DisorderItem>
                     <label htmlFor="military">병역 :</label>
                     <select id="military" name="military">
+                        <option value="exempted">면제</option>
                         <option value="normal">현역</option>
                         <option value="agent">공익</option>
-                        <option value="exempted">면제</option>
                         <option value="pending">미필</option>
                     </select>
                 </DisorderItem>
