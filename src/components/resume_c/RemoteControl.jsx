@@ -43,7 +43,7 @@ export function RemoteControl() {
     );
 }
 
-export default IndexList;
+export default RemoteControl;
 
 const IndexClicker = styled.div`
     text-align: center;

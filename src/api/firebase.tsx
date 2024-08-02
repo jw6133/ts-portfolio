@@ -96,14 +96,20 @@ async function adminUser(user: User): Promise<User> {
 
 async function checkAdmin(user: FirebaseUser): Promise<boolean> {
   try {
-    const q = query(collection(firestore, "admin"), where("email", "==", user.email));
-    const querySnapshot = await getDocs(q);
-    return !querySnapshot.empty;
+    if (!user.email) {
+      throw new Error('User email is null');
+    }
+    const emailKey = user.email.replace(/\./g, ','); // 이메일 주소에서 .을 ,로 대체
+    const dbRef = databaseRef(database, `admin/${emailKey}`);
+    const snapshot = await get(dbRef);
+    console.log(`Checking admin status for: ${emailKey}`);
+    return snapshot.exists();
   } catch (error) {
-    console.error(error);
+    console.error('Error checking admin status:', error);
     return false;
   }
 }
+
 
 // 포트폴리오 정보(사진, 제목, 글) 업로드
 export async function addPortfolioData(
@@ -141,6 +147,26 @@ export async function getPortfolioData(): Promise<DocumentData[]> {
     console.log("Fetching portfolio data...");
     const dbRef = databaseRef(database);
     const snapshot = await get(child(dbRef, 'portfolio_data'));
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log("Fetched data: ", data);
+      return Object.keys(data).map(key => ({ id: key, ...data[key] }));
+    } else {
+      console.log("No data available");
+      return [];
+    }
+  } catch (error) {
+    console.error("Error fetching portfolio data: ", error);
+    return [];
+  }
+}
+
+//Resume 데이터 가져오기
+export async function getResumeData(): Promise<DocumentData[]> {
+  try {
+    console.log("Fetching Resume data...");
+    const dbRef = databaseRef(database);
+    const snapshot = await get(child(dbRef, 'resume_data'));
     if (snapshot.exists()) {
       const data = snapshot.val();
       console.log("Fetched data: ", data);
