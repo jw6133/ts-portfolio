@@ -70,7 +70,8 @@ export default MainSwiper;
 const PhotoContainer = styled.div`
     width: 100%;
     max-width: 1820px;
-    margin: 20px auto;
+    margin: 0px auto;
+    margin-top:40px;
     overflow: hidden; // Swiper 크기를 초과하는 내용을 숨김
 `;
 
