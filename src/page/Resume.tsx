@@ -7,6 +7,7 @@ import Skill from '../components/resume_c/Skill';
 import WantJob from '../components/resume_c/WantJob';
 import CoverLetter from '../components/resume_c/CoverLetter';
 import ResumeEtc from '../components/resume_c/ResumeEtc';
+import { RemoteControl } from '../components/resume_c/RemoteControl';
 
 type ResumeProps = {};
 
@@ -14,6 +15,7 @@ export default function Resume(props: ResumeProps) {
   return (
     <>
       <Head />
+      <RemoteControl/>
       <Container>
         <Title>Resume</Title>
         <WhiteBox className="mainText">이력서</WhiteBox>
