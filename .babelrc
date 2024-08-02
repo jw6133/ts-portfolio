@@ -4,5 +4,8 @@
     "@babel/preset-react",
     "@babel/preset-typescript",
     "@linaria"
+  ],
+  "plugins": [
+    ["import", { "libraryName": "react-icons", "libraryDirectory": "lib", "camel2DashComponentName": false }]
   ]
 }

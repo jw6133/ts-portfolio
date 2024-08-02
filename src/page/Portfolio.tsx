@@ -4,10 +4,12 @@ import { styled } from '@linaria/react';
 import MainSwiper from '../components/portfolio_c/MainSwiper';
 import PortfolioCell from '../components/portfolio_c/PortfolioCell';
 import Foot from '../components/Foot';
+import First from './First';
 
 const Portfolio: React.FC = () => {
     return (
-        <>
+        <>  
+            <First/>
             <PortfolioWrapper>
                 <Head />
                 <MainSwiper />
@@ -23,7 +25,7 @@ const Portfolio: React.FC = () => {
 export default Portfolio;
 
 const PortfolioWrapper = styled.div`
-
+    margin-top:100vh;
 `;
 
 const CellWrapper = styled.div`
