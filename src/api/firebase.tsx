@@ -19,6 +19,7 @@ import {
 import {
   getDatabase,
   ref as databaseRef,
+  set,
   get,
   child,
 } from "firebase/database";
@@ -110,8 +111,7 @@ async function checkAdmin(user: FirebaseUser): Promise<boolean> {
   }
 }
 
-
-// 포트폴리오 정보(사진, 제목, 글) 업로드
+// 포트폴리오 정보(사진, 제목, 글) 업로드 (Realtime Database 사용)
 export async function addPortfolioData(
   title: string,
   tag: string,
@@ -121,7 +121,8 @@ export async function addPortfolioData(
   text2: string
 ): Promise<void> {
   try {
-    await addDoc(collection(firestore, "portfolio_data"), {
+    const id = uuidv4();
+    await set(databaseRef(database, `portfolio_data/${id}`), {
       title,
       tag,
       photo,
@@ -129,6 +130,7 @@ export async function addPortfolioData(
       table,
       text2,
     });
+    console.log("Document successfully written!");
   } catch (e) {
     console.error("Error adding document: ", e);
   }

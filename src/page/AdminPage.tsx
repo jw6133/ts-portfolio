@@ -174,3 +174,13 @@ const Button = styled.button`
     background-color: #444;
   }
 `;
+
+
+//backup json
+// [
+//   {"name":"이주영","role":"서버","description":"서버 및 발표준비","contribution":25},
+//   {"name":"김혜연","role":"서버","description":"서버 전반","contribution":30},
+//   {"name":"고영우","role":"클라이언트","description":"클라이언트","contribution":15},
+//   {"name":"백지웅","role":"클라이언트","description":"클라이언트","contribution":15},
+//   {"name":"이현서","role":"클라이언트","description":"클라이언트","contribution":15}
+//   ]
