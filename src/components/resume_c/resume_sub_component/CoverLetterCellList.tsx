@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from '@linaria/react';
-
-const initialData = [
-  { id: 1, title: '첫 번째 제목', value: '첫 번째 내용' },
-  { id: 2, title: '두 번째 제목', value: '두 번째 내용' },
-];
+import { getResumeData } from '../../../api/firebase';
 
 interface CoverLetterCellProps {
   id: number;
@@ -13,6 +9,15 @@ interface CoverLetterCellProps {
   onTitleChange: (id: number, title: string) => void;
   onChange: (id: number, value: string) => void;
   onDelete: (id: number) => void;
+}
+
+interface FirebaseData {
+  title1: string;
+  text1: string;
+  title2: string;
+  text2: string;
+  title3: string;
+  text3: string;
 }
 
 const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, title, value, onTitleChange, onChange, onDelete }) => {
@@ -40,10 +45,24 @@ const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, title, value, onT
 
 const CoverLetterCellList: React.FC = () => {
   const [inputs, setInputs] = useState<{ id: number; title: string; value: string }[]>([]);
-  const [nextId, setNextId] = useState(3); // 초기 데이터에 맞춰 nextId를 설정합니다.
+  const [nextId, setNextId] = useState(1);
 
   useEffect(() => {
-    setInputs(initialData);
+    const fetchData = async () => {
+      const data = await getResumeData();
+      console.log("Received data: ", data);
+      if (data) {
+        const formattedData = [
+          { id: 1, title: data.title1, value: data.text1 },
+          { id: 2, title: data.title2, value: data.text2 },
+          { id: 3, title: data.title3, value: data.text3 },
+        ];
+        setInputs(formattedData);
+        setNextId(formattedData.length + 1);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleAdd = () => {

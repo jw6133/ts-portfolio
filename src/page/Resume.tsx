@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '../components/Head';
 import Foot from '../components/Foot';
 import { styled } from '@linaria/react';
@@ -12,6 +12,7 @@ import { RemoteControl } from '../components/resume_c/RemoteControl';
 type ResumeProps = {};
 
 export default function Resume(props: ResumeProps) {
+  
   return (
     <>
       <Head />
