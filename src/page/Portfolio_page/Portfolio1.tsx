@@ -8,7 +8,7 @@ interface FirebaseData {
     title: string;
     tag: string;
     text1: string;
-    table: any; // 필요한 경우 구체적인 타입으로 변경하세요
+    table: any;
     text2: string;
 }
 

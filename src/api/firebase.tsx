@@ -162,21 +162,21 @@ export async function getPortfolioData(): Promise<DocumentData[]> {
 }
 
 //Resume 데이터 가져오기
-export async function getResumeData(): Promise<DocumentData[]> {
+export async function getResumeData(): Promise<DocumentData | null> {
   try {
     console.log("Fetching Resume data...");
     const dbRef = databaseRef(database);
-    const snapshot = await get(child(dbRef, 'resume_data'));
+    const snapshot = await get(child(dbRef, 'resume_data/0'));
     if (snapshot.exists()) {
       const data = snapshot.val();
       console.log("Fetched data: ", data);
-      return Object.keys(data).map(key => ({ id: key, ...data[key] }));
+      return { id: '0', ...data };
     } else {
       console.log("No data available");
-      return [];
+      return null;
     }
   } catch (error) {
-    console.error("Error fetching portfolio data: ", error);
-    return [];
+    console.error("Error fetching resume data: ", error);
+    return null;
   }
 }
