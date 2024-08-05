@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PortfolioCellSRC from './PortfolioCellSRC';
 import { styled } from '@linaria/react';
 
@@ -33,13 +33,34 @@ const PortfolioCell: React.FC = () => {
             bodyText : 'GDSC에서 진행한 세미해커톤으로, 최종 등수 3등을 달성한 알고리즘 코드 개선 프로젝트', alt: 'GDSC'},
     ];
 
+    const listRef = useRef<HTMLUListElement | null>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                } else {
+                    entry.target.classList.remove('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const items = listRef.current?.querySelectorAll('.portfolio-item');
+        items?.forEach(item => observer.observe(item));
+
+        return () => {
+            items?.forEach(item => observer.unobserve(item));
+        };
+    }, []);
+
     return (
         <>
             <SectionTitle>활동 목록</SectionTitle>
             <PortfolioListContainer>
-                <PortfolioList>
+                <PortfolioList ref={listRef}>
                     {imageList.map((data, index) => (
-                        <PortfolioItem key={index}>
+                        <PortfolioItem key={index} className="portfolio-item">
                             <PortfolioCellSRC portfolioData={data} index={index} />
                         </PortfolioItem>
                     ))}
@@ -82,4 +103,10 @@ const PortfolioItem = styled.li`
     flex: 1 1 380px;
     max-width: 380px;
     box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    &.fade-in {
+        opacity: 1;
+    }
 `;
