@@ -10,7 +10,6 @@ const Portfolio: React.FC = () => {
     const cellWrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-<<<<<<< HEAD
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -30,7 +29,6 @@ const Portfolio: React.FC = () => {
                 observer.unobserve(cellWrapperRef.current);
             }
         };
-=======
         const handleScroll = () => {
             if (cellWrapperRef.current) {
                 const { top, bottom } = cellWrapperRef.current.getBoundingClientRect();
@@ -46,7 +44,6 @@ const Portfolio: React.FC = () => {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
->>>>>>> origin/feature
     }, []);
 
     return (
