@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Head from '../components/Head';
 import { styled } from '@linaria/react';
 import MainSwiper from '../components/portfolio_c/MainSwiper';
@@ -7,13 +7,33 @@ import Foot from '../components/Foot';
 import First from './First';
 
 const Portfolio: React.FC = () => {
+    const cellWrapperRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (cellWrapperRef.current) {
+                const { top, bottom } = cellWrapperRef.current.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (top < windowHeight && bottom > 0) {
+                    cellWrapperRef.current.classList.add('fade-in');
+                } else {
+                    cellWrapperRef.current.classList.remove('fade-in');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <>  
             <First/>
             <PortfolioWrapper>
                 <Head />
                 <MainSwiper />
-                <CellWrapper>
+                <CellWrapper ref={cellWrapperRef}>
                     <PortfolioCell />
                 </CellWrapper>
                 <Foot />
@@ -29,5 +49,25 @@ const PortfolioWrapper = styled.div`
 `;
 
 const CellWrapper = styled.div`
+    opacity: 0;
+    transition: opacity 1s;
 
+    &.fade-in {
+        opacity: 1;
+    }
 `;
+
+// Fade-in animation style
+const fadeInStyle = `
+    .fade-section {
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .fade-in {
+        opacity: 1;
+    }
+`;
+
+// Append fade-in styles to the document head
+document.head.insertAdjacentHTML('beforeend', `<style>${fadeInStyle}</style>`);
