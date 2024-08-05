@@ -3,8 +3,18 @@
     font-weight: normal;
     src: url("../fonts/RobotoCondensed-Italic-VariableFont_wght.ttf");
   }
-  @font-face {
-    font-family: "SCDream";
-    font-weight: normal;
-    src: url("../fonts/SCDream4_regular.otf");
-  }
+@font-face {
+  font-family: "SCDream";
+  font-weight: normal;
+  src: url("../fonts/SCDream4_regular.otf");
+}
+@font-face {
+  font-family: "SCDream8";
+  font-weight: normal;
+  src: url("../fonts/SCDream8.otf");
+}
+@font-face{
+  font-family:"goorm-bold";
+  font-weight: normal;
+  src: url("../fonts/goorm-sans-bold.otf");
+}
