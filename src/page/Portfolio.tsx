@@ -10,21 +10,25 @@ const Portfolio: React.FC = () => {
     const cellWrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (cellWrapperRef.current) {
-                const { top, bottom } = cellWrapperRef.current.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-
-                if (top < windowHeight && bottom > 0) {
-                    cellWrapperRef.current.classList.add('fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
                 } else {
-                    cellWrapperRef.current.classList.remove('fade-in');
+                    entry.target.classList.remove('fade-in');
                 }
+            });
+        });
+
+        if (cellWrapperRef.current) {
+            observer.observe(cellWrapperRef.current);
+        }
+
+        return () => {
+            if (cellWrapperRef.current) {
+                observer.unobserve(cellWrapperRef.current);
             }
         };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
