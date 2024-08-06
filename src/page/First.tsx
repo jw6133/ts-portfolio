@@ -108,15 +108,17 @@ const MainWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  top: 0px;
+  top: 2%;
+  left: 2%;
   display: flex;
   gap: 10px;
 
   .linkBtn {
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
+    display: flex; /* 추가 */
+    justify-content: center; /* 추가 */
+    align-items: center; /* 추가 */
+    width: 60px;
+    height: 60px;
     font-size: 50px;
     color: white;
     background: none;
@@ -124,6 +126,7 @@ const ButtonWrapper = styled.div`
     border: none;
     box-sizing: border-box;
     position: relative;
+    border-bottom: 1px solid white;
 
     &:before {
       content: '';
