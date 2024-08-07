@@ -137,8 +137,8 @@ const ButtonWrapper = styled.div`
       position: absolute;
       top: 0px;
       right: 0px;
-      border-right: solid 4px white;
-      border-bottom: solid 4px white;
+      border-right: solid 3px white;
+      border-bottom: solid 3px white;
       opacity: 0;
       box-sizing: border-box;
     }
