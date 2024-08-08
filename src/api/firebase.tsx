@@ -115,20 +115,32 @@ async function checkAdmin(user: FirebaseUser): Promise<boolean> {
 export async function addPortfolioData(
   title: string,
   tag: string,
+  tag2: string,
   photo: string,
   text1: string,
   table: DocumentData,
-  text2: string
+  text2: string,
+  text3: string,
 ): Promise<void> {
   try {
-    const id = uuidv4();
-    await set(databaseRef(database, `portfolio_data/${id}`), {
+    const dbRef = databaseRef(database, 'portfolio_data');
+    const snapshot = await get(dbRef);
+
+    let index = 0;
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      index = Object.keys(data).length;
+    }
+
+    await set(databaseRef(database, `portfolio_data/${index}`), {
       title,
       tag,
+      tag2,
       photo,
       text1,
       table,
       text2,
+      text3,
     });
     console.log("Document successfully written!");
   } catch (e) {
