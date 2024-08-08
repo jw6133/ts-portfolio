@@ -7,10 +7,12 @@ const AdminPage: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
+  const [tag2, setTag2] = useState('');
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [text1, setText1] = useState('');
   const [table, setTable] = useState('');
   const [text2, setText2] = useState('');
+  const [text3, setText3] = useState('');
 
   useEffect(() => {
     onUserState(setUser);
@@ -46,13 +48,15 @@ const AdminPage: React.FC = () => {
         photoURL = await uploadFile(photoFile);
       }
       const tableData = JSON.parse(table);
-      await addPortfolioData(title, tag, photoURL, text1, tableData, text2);
+      await addPortfolioData(title, tag, tag2, photoURL, text1, tableData, text2, text3);
       setTitle('');
       setTag('');
+      setTag2('');
       setPhotoFile(null);
       setText1('');
       setTable('');
       setText2('');
+      setText3('');
       alert('Data added successfully!');
     } else {
       alert('You are not authorized to add data.');
@@ -95,24 +99,32 @@ const AdminPage: React.FC = () => {
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
           </div>
           <div>
-            <label>Tag:</label>
+            <label>태그 :</label>
             <input type="text" value={tag} onChange={(e) => setTag(e.target.value)} required />
           </div>
           <div>
-            <label>Photo:</label>
+            <label>사용 기술 :</label>
+            <input type="text" value={tag2} onChange={(e) => setTag2(e.target.value)} required />
+          </div>
+          <div>
+            <label>사진 :</label>
             <input type="file" onChange={handlePhotoChange} required />
           </div>
           <div>
-            <label>Text 1:</label>
+            <label>프로젝트 소개:</label>
             <textarea value={text1} onChange={(e) => setText1(e.target.value)} required></textarea>
           </div>
           <div>
-            <label>Table (JSON format):</label>
+            <label>인원 (JSON 형식):</label>
             <textarea value={table} onChange={(e) => setTable(e.target.value)} required></textarea>
           </div>
           <div>
-            <label>Text 2:</label>
+            <label>프로젝트 내용:</label>
             <textarea value={text2} onChange={(e) => setText2(e.target.value)} required></textarea>
+          </div>
+          <div>
+            <label>성과:</label>
+            <textarea value={text3} onChange={(e) => setText3(e.target.value)} required></textarea>
           </div>
           <Button type="submit">Add</Button>
         </Form>

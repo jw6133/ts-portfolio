@@ -19,7 +19,7 @@ const PortfolioCellSRC: React.FC<PortfolioCellSRCProps> = ({ portfolioData, inde
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/Portfolio${index + 1}`);
+        navigate(`/Portfolio/${index + 1}`);
     };
 
     return (

@@ -22,7 +22,7 @@ function App() {
           <Route path='/info' element={<Information/>}/>
           <Route path='/resume' element={<Resume/>}/>
           <Route path='/ppt' element={<Presentation/>}/>
-          <Route path='/portfolio1' element={<Portfolio1/>}/>
+          <Route path="/portfolio/:index" element={<Portfolio1 />} />
           <Route path='/admin' element={<AdminPage/>}/>
         </Routes>
       </BrowserRouter>

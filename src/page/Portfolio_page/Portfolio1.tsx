@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Head from '../../components/Head';
 import { styled } from '@linaria/react';
 import CellPeopleTable from '../../components/cell_detail_c/CellPeopleTable';
@@ -7,31 +8,38 @@ import { getPortfolioData } from '../../api/firebase';
 interface FirebaseData {
     title: string;
     tag: string;
+    tag2: string;
     text1: string;
     table: any;
     text2: string;
+    text3: string;
 }
 
 const Portfolio1: React.FC = () => {
+    const { index } = useParams<{ index: string }>();
     const [firebaseData, setFirebaseData] = useState<FirebaseData | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             console.log("Calling getPortfolioData...");
             const data = await getPortfolioData();
-            console.log("Received data: ", data);
-            if (data.length > 0) {
-                setFirebaseData(data[0] as FirebaseData);
+            console.log("Fetched data: ", data);
+            const dataIndex = index ? parseInt(index, 10) - 1 : 0; // Adjusted to start from 0
+            if (dataIndex >= 0 && dataIndex < data.length) {
+                setFirebaseData(data[dataIndex] as FirebaseData);
+                console.log("Data Index: ", dataIndex);
+            } else {
+                console.error('Data index out of range:', dataIndex);
             }
         };
 
         fetchData();
-    }, []);
+    }, [index]);
 
     if (!firebaseData) {
         return (
             <LoadingWrapper>
-                <img src='photo/loading.gif' alt="Loading..."/>
+                <img src='photo/loading.gif' alt="Loading..." />
             </LoadingWrapper>
         );
     }
@@ -42,9 +50,11 @@ const Portfolio1: React.FC = () => {
             <Container>
                 <span className='title'>{firebaseData.title}</span>
                 <span className='tag'>{firebaseData.tag}</span>
+                <span className='tag2'>{firebaseData.tag2}</span>
                 <p className='text1'>{firebaseData.text1}</p>
                 <CellPeopleTable data={firebaseData.table} />
                 <p className='text2'>{firebaseData.text2}</p>
+                <p className='text3'>{firebaseData.text3}</p>
             </Container>
         </>
     );
@@ -77,8 +87,8 @@ const Container = styled.div`
 `;
 
 const LoadingWrapper = styled.div`
-    width:50%;
-    height:50%;
-    margin:0 auto;
-    margin-top:5%;
-`
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    margin-top: 5%;
+`;
