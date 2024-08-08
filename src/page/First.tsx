@@ -56,12 +56,12 @@ export default function First(props: FirstProps) {
 }
 
 const FirstWrapper = styled.div`
-  z-index: 999;
+  z-index: -999;
   background-color: #0093ED;
   width: 100%;
   height: 100vh;
-  position: absolute;
-  top: 0px;
+  position: fixed;
+  top: 0;
   color: white;
 
   .down-arrow {

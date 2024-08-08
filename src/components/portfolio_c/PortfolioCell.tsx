@@ -56,21 +56,28 @@ const PortfolioCell: React.FC = () => {
 
     return (
         <>
-            <SectionTitle>활동 목록</SectionTitle>
-            <PortfolioListContainer>
-                <PortfolioList ref={listRef}>
-                    {imageList.map((data, index) => (
-                        <PortfolioItem key={index} className="portfolio-item">
-                            <PortfolioCellSRC portfolioData={data} index={index} />
-                        </PortfolioItem>
-                    ))}
-                </PortfolioList>
-            </PortfolioListContainer>
+            <Floater>
+                <SectionTitle>활동 목록</SectionTitle>
+                <PortfolioListContainer>
+                    <PortfolioList ref={listRef}>
+                        {imageList.map((data, index) => (
+                            <PortfolioItem key={index} className="portfolio-item">
+                                <PortfolioCellSRC portfolioData={data} index={index} />
+                            </PortfolioItem>
+                        ))}
+                    </PortfolioList>
+                </PortfolioListContainer>
+            </Floater>
         </>
     );
 }
 
 export default PortfolioCell;
+
+export const Floater = styled.div`
+    background-color:#e9ecef;
+    z-index:5;
+`
 
 const SectionTitle = styled.div`
     display: flex;
