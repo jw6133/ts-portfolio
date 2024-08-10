@@ -12,17 +12,20 @@ type FirstProps = {};
 export default function First(props: FirstProps) {
   const [showStep1, setShowStep1] = useState(false);
   const [showStep2, setShowStep2] = useState(false);
-  const [showStep3, setShowStep3] = useState(false);
+  const [shrinkText, setShrinkText] = useState(false);
+  const [showRemainingText, setShowRemainingText] = useState(false);
 
   useEffect(() => {
     const timer1 = setTimeout(() => setShowStep1(true), 500);  // 0.5초 후 첫 번째 텍스트 표시
     const timer2 = setTimeout(() => setShowStep2(true), 1500); // 1.5초 후 두 번째 텍스트 표시
-    const timer3 = setTimeout(() => setShowStep3(true), 2500); // 2.5초 후 세 번째 텍스트 표시
+    const timer3 = setTimeout(() => setShrinkText(true), 3000); // 3초 후 텍스트 축소 및 fade 처리
+    const timer4 = setTimeout(() => setShowRemainingText(true), 4500); // 4.5초 후 나머지 텍스트 표시
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
+      clearTimeout(timer4);
     };
   }, []);
 
@@ -30,13 +33,13 @@ export default function First(props: FirstProps) {
     <>
       <FirstWrapper>
         <MainWrapper>
-          {showStep1 && <p className='main-title fade-in'>적응하는 개발자.</p>}
-          {showStep2 && <p className='main-title fade-in'>백지웅입니다 :)</p>}
-          {showStep3 && (
+          {showStep1 && <p className={`main-title ${shrinkText ? 'shrink' : 'fade-slide'}`}>Front-end</p>}
+          {showStep2 && <p className={`main-title ${shrinkText ? 'shrink' : 'fade-slide'}`}>Developer</p>}
+          {showRemainingText && (
             <>
+              <p className='main-text fade-in'>적응하는 개발자.</p>
+              <p className='main-text fade-in'>백지웅입니다 :)</p>
               <p className='main-text fade-in'>프론트엔드 개발자를 목표로 노력중인 백지웅입니다.</p>
-              <p className='main-text fade-in'>변화무쌍한 프론트엔드 환경에서 적응하기 위해 최신 기술들을 기록하고 습득합니다.</p>
-              <p className='main-text fade-in'>남들과 지식을 나누며 새로운 기술을 배우고 자신의 기술을 확고히 하기 위해 노력합니다.</p>
             </>
           )}
         </MainWrapper>
@@ -89,7 +92,7 @@ const FirstWrapper = styled.div`
 
 const MainWrapper = styled.div`
   position: relative;
-  z-index: -997; /* Ensure text is above the overlay */
+  z-index: -997; /* 텍스트가 오버레이 위에 위치하도록 함 */
 
   .main-title {
     font-family: "SCdream8";
@@ -98,7 +101,24 @@ const MainWrapper = styled.div`
     text-align: center;
     margin: 4% auto;
     opacity: 0;
-    animation: fadeIn 1s forwards;
+    animation: slideIn 2s forwards; /* 슬라이드 인 애니메이션 */
+    transition: all 2s ease-in-out; /* 축소 애니메이션을 위한 트랜지션 추가 */
+  }
+
+  .shrink {
+    transform: scale(0.5); /* 크기 줄임 */
+    opacity: 0.6; /* 불투명도 줄임 */
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%); /* 왼쪽에서 시작 */
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0); /* 중앙으로 슬라이드 */
+      opacity: 1;
+    }
   }
 
   .main-text {
