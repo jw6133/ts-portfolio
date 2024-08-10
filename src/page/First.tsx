@@ -57,12 +57,26 @@ export default function First(props: FirstProps) {
 
 const FirstWrapper = styled.div`
   z-index: -999;
-  background-color: #0093ED;
   width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   color: white;
+  background-image: url('./firstphoto/first4.jpg');
+  background-size: cover; /* 이미지 크기 설정 */
+  background-position: center; /* 이미지 위치 설정 */
+
+  /* Add an overlay */
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: -998;
+  }
 
   .down-arrow {
     position: absolute;
@@ -74,6 +88,9 @@ const FirstWrapper = styled.div`
 `;
 
 const MainWrapper = styled.div`
+  position: relative;
+  z-index: -997; /* Ensure text is above the overlay */
+
   .main-title {
     font-family: "SCdream8";
     width: 100%;
@@ -112,11 +129,12 @@ const ButtonWrapper = styled.div`
   left: 2%;
   display: flex;
   gap: 10px;
+  z-index: -997; /* Ensure buttons are above the overlay */
 
   .linkBtn {
-    display: flex; /* 추가 */
-    justify-content: center; /* 추가 */
-    align-items: center; /* 추가 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 60px;
     height: 60px;
     font-size: 50px;
