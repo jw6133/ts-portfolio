@@ -79,13 +79,14 @@ export const Floater = styled.div`
     z-index:5;
 `
 
-const SectionTitle = styled.div`
+export const SectionTitle = styled.div`
     display: flex;
     position: relative;
     left: 10%;
     margin-top: 3%;
     font-size: 48px;
     font-weight: bold;
+    color:black;
 `;
 
 const PortfolioListContainer = styled.div`
