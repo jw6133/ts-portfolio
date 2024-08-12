@@ -52,9 +52,9 @@ export default function First(props: FirstProps) {
               {showStep2 && <p className={`main-title ${fadeOutTitle ? 'fade-out' : 'fade-slide'}`}>Developer</p>}
             </div>
             <div className='mText'>
-              {showText1 && <p className='main-text mte1 fade-in'>적응하는 개발자.</p>}
-              {showText2 &&<p className='main-text mte2 fade-in'>백지웅입니다 :)</p>}
-              {showText3 &&<p className='main-text mte3 fade-in'>프론트엔드 개발자를 목표로 노력중인 백지웅입니다.</p>}
+              {showText1 && <p className='main-text fade-in'>적응하는 개발자.</p>}
+              {showText2 &&<p className='main-text fade-in'>백지웅입니다 :)</p>}
+              {showText3 &&<p className='main-text fade-in'>프론트엔드 개발자를 목표로 노력중인 백지웅입니다.</p>}
             </div>
           </>
           
