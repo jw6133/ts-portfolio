@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { SiGithub } from 'react-icons/si';
 import { FaInstagram } from 'react-icons/fa6';
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
+import { SiVelog } from "react-icons/si";
 // css
 import "../style/font.css";
 
@@ -12,36 +13,51 @@ type FirstProps = {};
 export default function First(props: FirstProps) {
   const [showStep1, setShowStep1] = useState(false);
   const [showStep2, setShowStep2] = useState(false);
-  const [shrinkText, setShrinkText] = useState(false);
-  const [showRemainingText, setShowRemainingText] = useState(false);
+  const [fadeOutTitle, setFadeOutTitle] = useState(false);
+  const [showText1, setShowText1] = useState(false);
+  const [showText2, setShowText2] = useState(false);
+  const [showText3, setShowText3] = useState(false);
 
   useEffect(() => {
     const timer1 = setTimeout(() => setShowStep1(true), 500);  // 0.5초 후 첫 번째 텍스트 표시
     const timer2 = setTimeout(() => setShowStep2(true), 1500); // 1.5초 후 두 번째 텍스트 표시
-    const timer3 = setTimeout(() => setShrinkText(true), 3000); // 3초 후 텍스트 축소 및 fade 처리
-    const timer4 = setTimeout(() => setShowRemainingText(true), 4500); // 4.5초 후 나머지 텍스트 표시
+    const timer3 = setTimeout(() => setFadeOutTitle(true), 3000); // 3초 후 텍스트 opacity 낮춤
+    const timer4 = setTimeout(() => setShowText1(true), 4500);
+    const timer5 = setTimeout(() => setShowText2(true), 5000);
+    const timer6 = setTimeout(() => setShowText3(true), 5500);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
       clearTimeout(timer4);
+      clearTimeout(timer5);
+      clearTimeout(timer6);
     };
   }, []);
 
+  const scrollToNextSection = () => {
+    window.scrollTo({
+      top: window.innerHeight, // 100vh 아래로 이동
+      behavior: 'smooth', // 부드럽게 이동
+    });
+  };
   return (
     <>
       <FirstWrapper>
         <MainWrapper>
-          {showStep1 && <p className={`main-title ${shrinkText ? 'shrink' : 'fade-slide'}`}>Front-end</p>}
-          {showStep2 && <p className={`main-title ${shrinkText ? 'shrink' : 'fade-slide'}`}>Developer</p>}
-          {showRemainingText && (
-            <>
-              <p className='main-text fade-in'>적응하는 개발자.</p>
-              <p className='main-text fade-in'>백지웅입니다 :)</p>
-              <p className='main-text fade-in'>프론트엔드 개발자를 목표로 노력중인 백지웅입니다.</p>
-            </>
-          )}
+          <>
+            <div className='mTitle'>
+              {showStep1 && <p className={`main-title ${fadeOutTitle ? 'fade-out' : 'fade-slide'}`}>Front-end</p>}
+              {showStep2 && <p className={`main-title ${fadeOutTitle ? 'fade-out' : 'fade-slide'}`}>Developer</p>}
+            </div>
+            <div className='mText'>
+              {showText1 && <p className='main-text mte1 fade-in'>적응하는 개발자.</p>}
+              {showText2 &&<p className='main-text mte2 fade-in'>백지웅입니다 :)</p>}
+              {showText3 &&<p className='main-text mte3 fade-in'>프론트엔드 개발자를 목표로 노력중인 백지웅입니다.</p>}
+            </div>
+          </>
+          
         </MainWrapper>
 
         <ButtonWrapper>
@@ -51,8 +67,13 @@ export default function First(props: FirstProps) {
           <button className="insta-btn linkBtn" onClick={() => window.open('https://www.instagram.com/baack_g/')}>
             <FaInstagram />
           </button>
+          <button className='velog-btn linkBtn' onClick={()=> window.open('https://velog.io/@fastturtle/posts')}>
+            <SiVelog/>
+          </button>
         </ButtonWrapper>
-        <div className='down-arrow'><MdKeyboardDoubleArrowDown /></div>
+        <div className='down-arrow' onClick={scrollToNextSection}>
+          <MdKeyboardDoubleArrowDown />
+        </div>
       </FirstWrapper>
     </>
   );
@@ -77,7 +98,7 @@ const FirstWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: -998;
   }
 
@@ -87,29 +108,42 @@ const FirstWrapper = styled.div`
     width: 100%;
     text-align: center;
     font-size: 36px;
+    cursor: pointer;
+    animation: bounce 0.8s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
   }
 `;
 
 const MainWrapper = styled.div`
   position: relative;
-  z-index: -997; /* 텍스트가 오버레이 위에 위치하도록 함 */
+  z-index: -997;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* 부모 컨테이너의 전체 높이를 차지 */
+  text-align: center; /* 텍스트 가운데 정렬 */
 
   .main-title {
-    font-family: "SCdream8";
-    width: 100%;
-    font-size: 50px;
-    text-align: center;
-    margin: 4% auto;
-    opacity: 0;
-    animation: slideIn 2s forwards; /* 슬라이드 인 애니메이션 */
-    transition: all 2s ease-in-out; /* 축소 애니메이션을 위한 트랜지션 추가 */
+  font-family: "SCdream8";
+  font-size: 200px;
+  opacity: 0.5;
+  animation: slideIn 1s forwards;
+  transition: opacity 1s ease-in-out;
+  z-index: 1; /* Increased z-index */
+}
+  .mTitle{
+    position:absolute;
+    top:20%;
   }
-
-  .shrink {
-    transform: scale(0.5); /* 크기 줄임 */
-    opacity: 0.6; /* 불투명도 줄임 */
-  }
-
   @keyframes slideIn {
     0% {
       transform: translateX(-100%); /* 왼쪽에서 시작 */
@@ -120,15 +154,26 @@ const MainWrapper = styled.div`
       opacity: 1;
     }
   }
+  .fade-out {
+    color:rgba(255, 255, 255, 0.3);
+    transition: color 1s ease-in-out; /* 트랜지션 추가 */
+  }
 
+  .mText {
+    position:absolute;
+    top:38%;
+    width:1000px;
+    height:200px;
+  }
   .main-text {
     font-family: "goorm-bold";
     font-size: 36px;
-    text-align: center;
     opacity: 0;
-    animation: fadeIn 1s forwards;
+    margin-top:1.5%;
+    &:first-of-type{
+      margin-top:0px;
+    }
   }
-
   .fade-in {
     animation: fadeIn 1s forwards;
   }
@@ -142,6 +187,7 @@ const MainWrapper = styled.div`
     }
   }
 `;
+
 
 const ButtonWrapper = styled.div`
   position: absolute;
