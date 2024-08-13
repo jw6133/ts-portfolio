@@ -72,7 +72,7 @@ body,html{
 	/* &.no-scroll{
 		overflow-y: hidden ;
 	} */
-	background-color:#e9ecef;
+	background-color:#EFF4F7
 
 }
 `

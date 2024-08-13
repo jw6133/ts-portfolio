@@ -81,7 +81,7 @@ const Container = styled.div`
   }
 
   .content {
-    padding: 40px 40px 0 20px;
+    /* padding: 40px 40px 0 20px; */
     position: relative;
     width: 100%;
   }

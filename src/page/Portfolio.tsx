@@ -6,6 +6,8 @@ import Foot from '../components/Foot';
 import First from './First';
 import PortfolioHead from '../components/portfolio_c/PortfolioHead';
 import SkillsSection from '../components/portfolio_c/SkillsSection';
+import Information from './information';
+import Resume from './Resume';
 
 const Portfolio: React.FC = () => {
     return (
@@ -18,6 +20,8 @@ const Portfolio: React.FC = () => {
                 <CellWrapper>
                     <PortfolioCell />
                 </CellWrapper>
+                <Information/>
+                <Resume/>
                 <Foot />
             </PortfolioWrapper>
         </>
