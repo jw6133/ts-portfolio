@@ -52,7 +52,6 @@ const SkillsWrapper = styled.div`
   padding: 60px 0;
   background-color: transparent;
   color: white;
-  padding: 60px 0;
   border-radius: 8px;
   max-width: 1600px;
   margin: 0 auto;

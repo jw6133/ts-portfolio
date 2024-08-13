@@ -8,6 +8,7 @@ import PortfolioHead from '../components/portfolio_c/PortfolioHead';
 import SkillsSection from '../components/portfolio_c/SkillsSection';
 import Information from './information';
 import Resume from './Resume';
+import Presentation from './Presentation';
 
 const Portfolio: React.FC = () => {
     return (
@@ -22,6 +23,7 @@ const Portfolio: React.FC = () => {
                 </CellWrapper>
                 <Information/>
                 <Resume/>
+                <Presentation/>
                 <Foot />
             </PortfolioWrapper>
         </>
