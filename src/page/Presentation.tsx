@@ -1,19 +1,15 @@
 import React from 'react';
-import Head from '../components/Head';
 import { styled } from '@linaria/react';
-import Foot from '../components/Foot';
 import PdfViewer from '../components/PdfViewer';
 
 const Presentation: React.FC = () => {
     return (
         <>
-            <Head />
             <PresentationWrapper>
                 <span className="sectionTitle">주요 발표 자료</span>
                 {/* react-pdf 뷰어 */}
                 <PdfViewer />
             </PresentationWrapper>
-            <Foot />
         </>
     );
 };
