@@ -75,7 +75,7 @@ const PortfolioCell: React.FC = () => {
 export default PortfolioCell;
 
 export const Floater = styled.div`
-    background-color:#e9ecef;
+    background-color:#EFF4F7;
     z-index:5;
 `
 

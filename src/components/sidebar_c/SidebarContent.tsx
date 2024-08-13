@@ -46,9 +46,8 @@ const SidebarContent: React.FC = () => {
                     <li onClick={goToPPT}><span className='icon40'><RiPresentationLine /></span> <span className='sideText'>주요 발표 자료</span></li>
                 </ul>
             </div>
-            <div className='slideBtn'>
-                <ToggleTheme />
-            </div>
+                <span className='toggleWrapper'><ToggleTheme /></span>
+
             <button className='admin' onClick={goToAdmin}><span className='icon30'><GrUserAdmin /></span></button>
 
         </SideContentWrapper>
@@ -61,6 +60,7 @@ const SideContentWrapper = styled.div`
     position:relative;
     color:white;
     background-color:#5e5e5e;
+    height:100vh;
     .sideHead{
         position:relative;
         display:flex;
@@ -121,6 +121,8 @@ const SideContentWrapper = styled.div`
         position: absolute;
         bottom:20%;
         right:-10%;
+        background-color:#5e5e5e;
+        width:100%;
     }
     .admin{
         color:white;
@@ -134,5 +136,12 @@ const SideContentWrapper = styled.div`
         &:hover{
             color:yellow;
         }
+    }
+    .toggleWrapper{
+        width:200px;
+        height:64px;
+        position:relative;
+        bottom:80px;
+        left:560px;
     }
 `;

@@ -98,7 +98,7 @@ const FirstWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: -998;
   }
 
@@ -155,7 +155,7 @@ const MainWrapper = styled.div`
     }
   }
   .fade-out {
-    color:rgba(255, 255, 255, 0.3);
+    color:rgba(255, 255, 255, 0.2);
     transition: color 1s ease-in-out; /* 트랜지션 추가 */
   }
 

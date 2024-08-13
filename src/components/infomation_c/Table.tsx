@@ -41,7 +41,7 @@ const StyledTable = styled.table`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
   thead tr {
-    background-color: #0093ed;
+    background-color: #8E9A9A;
     color: #ffffff;
     text-align: left;
   }
@@ -67,13 +67,13 @@ const StyledTable = styled.table`
     border-right: none;
   }
   tbody tr:nth-of-type(odd) {
-    background-color: #D6F5FF;
+    background-color: #b7cfca;
   }
   tbody tr:nth-of-type(even) {
-    background-color: #e6f9ff;
+    background-color: #cedfde;
   }
 
-  tbody tr:last-of-type {
-    border-bottom: 2px solid #7DD8FF;
-  }
+  /* tbody tr:last-of-type {
+    border-bottom: 2px solid #eff4f7;
+  } */
 `;

@@ -34,7 +34,6 @@ const Information: React.FC = () => {
 
   return (
     <>
-      <Head />
       <InformationWrapper>
         <span className='sectionTitle'>학력사항</span>
         <Table data={schoolData} />
@@ -45,7 +44,6 @@ const Information: React.FC = () => {
         <span className='sectionTitle'>자격사항 및 어학능력</span>
         <Table data={certificateData} />
       </InformationWrapper>
-      <Foot />
     </>
   );
 };

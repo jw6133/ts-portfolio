@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Head from '../components/Head';
-import Foot from '../components/Foot';
 import { styled } from '@linaria/react';
 import Human from '../components/resume_c/Human';
 import Skill from '../components/resume_c/Skill';
@@ -15,8 +13,7 @@ export default function Resume(props: ResumeProps) {
   
   return (
     <>
-      <Head />
-      <RemoteControl/>
+      {/* <RemoteControl/> */}
       <Container>
         <Title>Resume</Title>
         <WhiteBox className="mainText">이력서</WhiteBox>
@@ -26,7 +23,6 @@ export default function Resume(props: ResumeProps) {
         <ResumeEtc/>
         <CoverLetter/>
       </Container>
-      <Foot />
     </>
   );
 }
