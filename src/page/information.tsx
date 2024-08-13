@@ -34,13 +34,21 @@ const Information: React.FC = () => {
     <>
       <InformationWrapper>
         <span className='sectionTitle'>학력사항</span>
-        <NewTable data={schoolData} />
+        <div className='TableWrapper'>
+          <NewTable data={schoolData} />
+        </div>
         <span className='sectionTitle'>사회경험</span>
-        <NewTable data={socialData} />
+        <div className='TableWrapper'>
+          <NewTable data={socialData} />
+        </div>
         <span className='sectionTitle'>수상경험</span>
-        <NewTable data={awardData} />
+        <div className='TableWrapper'>
+          <NewTable data={awardData} />
+        </div>
         <span className='sectionTitle'>자격사항 및 어학능력</span>
-        <NewTable data={certificateData} />
+        <div className='TableWrapper'>
+          <NewTable data={certificateData} />
+        </div>
       </InformationWrapper>
     </>
   );
@@ -63,5 +71,14 @@ export const InformationWrapper = styled.div`
     margin-bottom: 3%;
     font-size: 48px;
     font-weight: bold;
+  }
+  .TableWrapper{
+    max-width:1240px;
+    margin:0 auto;
+    margin-bottom: 3%;
+    border-bottom:solid 1px black;
+    &:last-of-type{
+      margin-bottom:none;
+    }
   }
 `;
