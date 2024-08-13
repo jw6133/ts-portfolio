@@ -102,7 +102,7 @@ const PdfViewer: React.FC = () => {
 export default PdfViewer;
 
 const Container = styled.div`
-  width: 70%;
+  max-width:1240px;
   height: 70%;
   margin-bottom: 3%;
   margin-left: 10%;
