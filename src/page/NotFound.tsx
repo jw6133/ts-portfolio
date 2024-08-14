@@ -1,6 +1,6 @@
 import React from 'react'
-import Head from '../components/Head'
 import {styled} from '@linaria/react';
+import PortfolioHead from '../components/portfolio_c/PortfolioHead';
 
 type NotFoundProps = {};
 
@@ -8,7 +8,7 @@ export default function NotFound(props: NotFoundProps) {
 
   return (
     <>
-        <Head/>
+        <PortfolioHead/>
         <TextWrapper>
             NotFound
         </TextWrapper>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Head from '../../components/Head';
 import { styled } from '@linaria/react';
 import CellPeopleTable from '../../components/cell_detail_c/CellPeopleTable';
 import { getPortfolioData } from '../../api/firebase';
+import PortfolioHead from '../../components/portfolio_c/PortfolioHead';
 
 interface FirebaseData {
     title: string;
@@ -46,7 +46,7 @@ const Portfolio1: React.FC = () => {
 
     return (
         <>
-            <Head />
+            <PortfolioHead />
             <Container>
                 <span className='title'>{firebaseData.title}</span>
                 <span className='tag'>{firebaseData.tag}</span>

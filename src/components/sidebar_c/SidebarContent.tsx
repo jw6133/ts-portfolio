@@ -10,7 +10,11 @@ import { RiPresentationLine } from "react-icons/ri";
 import { GrUserAdmin } from "react-icons/gr";
 import ToggleTheme from './ToggleTheme';
 
-const SidebarContent: React.FC = () => {
+interface SidebarContentProps {
+  fadeIn: boolean; // 페이드인 여부를 나타내는 prop
+}
+
+const SidebarContent: React.FC<SidebarContentProps> = ({ fadeIn }) => {
 
     const navigate = useNavigate();
 
@@ -31,7 +35,7 @@ const SidebarContent: React.FC = () => {
     }
 
     return (
-        <SideContentWrapper>
+        <SideContentWrapper className={fadeIn ? 'fade-in' : ''}>
             <div className='sideHead'>
                 <img className='face-photo' src='photo/main_human_face.jpg' alt='내 얼굴' />
                 <span className='name'>백지웅</span>
@@ -46,10 +50,9 @@ const SidebarContent: React.FC = () => {
                     <li onClick={goToPPT}><span className='icon40'><RiPresentationLine /></span> <span className='sideText'>주요 발표 자료</span></li>
                 </ul>
             </div>
-                <span className='toggleWrapper'><ToggleTheme /></span>
+            <span className='toggleWrapper'><ToggleTheme /></span>
 
             <button className='admin' onClick={goToAdmin}><span className='icon30'><GrUserAdmin /></span></button>
-
         </SideContentWrapper>
     );
 };
@@ -59,7 +62,7 @@ export default SidebarContent;
 const SideContentWrapper = styled.div`
     position:relative;
     color:white;
-    background-color:#5e5e5e;
+    background-color:rgba(94,94,94,0.7);
     height:100vh;
     .sideHead{
         position:relative;
@@ -144,4 +147,15 @@ const SideContentWrapper = styled.div`
         bottom:80px;
         left:560px;
     }
+    &.fade-in {
+    animation: fadeIn 0.7s forwards;
+    }
+    @keyframes fadeIn {
+    from {
+        background-color:rgba(94,94,94,0.7);
+    }
+    to {
+        background-color:rgba(94,94,94,1);
+    }
+  }
 `;

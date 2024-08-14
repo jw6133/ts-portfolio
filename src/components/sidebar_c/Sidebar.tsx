@@ -4,25 +4,26 @@ import styled from "styled-components";
 interface SidebarProps {
   width: number;
   children: ReactNode;
+  onToggle?: (isOpen: boolean) => void; // 사이드바 열림/닫힘 상태를 알리는 콜백 함수
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ width, children }) => {
+const Sidebar: React.FC<SidebarProps> = ({ width, children, onToggle }) => {
   const [isOpen, setOpen] = useState(false);
   const [xPosition, setX] = useState(-width);
   const side = useRef<HTMLDivElement>(null);
 
-  // button 클릭 시 토글
   const toggleMenu = () => {
     if (xPosition < 0) {
       setX(0);
       setOpen(true);
+      onToggle && onToggle(true); // 사이드바가 열릴 때 콜백 호출
     } else {
       setX(-width);
       setOpen(false);
+      onToggle && onToggle(false); // 사이드바가 닫힐 때 콜백 호출
     }
   };
 
-  // 사이드바 외부 클릭시 닫히는 함수
   const handleClose = async (e: MouseEvent) => {
     if (side.current) {
       let sideArea = side.current;
@@ -30,6 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({ width, children }) => {
       if (isOpen && (!sideArea || !sideChildren)) {
         await setX(-width);
         await setOpen(false);
+        onToggle && onToggle(false); // 사이드바가 닫힐 때 콜백 호출
       }
     }
   };
@@ -62,6 +64,8 @@ const Sidebar: React.FC<SidebarProps> = ({ width, children }) => {
 };
 
 export default Sidebar;
+
+
 
 const Container = styled.div`
   background-color: #e3ecf1;

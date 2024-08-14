@@ -75,7 +75,6 @@ const PortfolioCell: React.FC = () => {
 export default PortfolioCell;
 
 export const Floater = styled.div`
-    background-color:#EFF4F7;
     z-index:5;
 `
 
@@ -85,8 +84,8 @@ export const SectionTitle = styled.div`
     left: 10%;
     margin-top: 3%;
     font-size: 48px;
-    font-weight: bold;
     color:black;
+    font-family:"SCDream8";
 `;
 
 const PortfolioListContainer = styled.div`

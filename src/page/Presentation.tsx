@@ -24,7 +24,7 @@ const PresentationWrapper = styled.div`
         left: 10%;
         margin-bottom: 3%;
         font-size: 48px;
-        font-weight: bold;
+        font-family:"SCDream8";
     }
 `;
 

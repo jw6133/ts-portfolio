@@ -72,7 +72,9 @@ body,html{
 	/* &.no-scroll{
 		overflow-y: hidden ;
 	} */
-	background-color:#EFF4F7
+	background-color:#dee7f0;
+	color:#03152D;
+	font-family:"SCDream";
 
 }
 `
