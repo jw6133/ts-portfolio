@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@linaria/react';
 import { SectionTitle } from './PortfolioCell';
 import { SiGithub } from 'react-icons/si';
+import "../../style/font.css"
 
 const SkillsSection: React.FC = () => {
   return (
@@ -43,8 +44,6 @@ const SkillsSection: React.FC = () => {
 };
 
 export default SkillsSection;
-
-// Styled components
 
 const SkillsWrapper = styled.div`
   width: 100%;

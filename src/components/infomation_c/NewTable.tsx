@@ -46,33 +46,41 @@ const NewTable: React.FC<NewTableProps> = ({ data }) => {
           {isSchoolData(item) && (
             <>
               <DataLabel>{item['학교명']}</DataLabel>
-              <DataDetails>{item['전공 및 수료과정']}</DataDetails>
-              <DataSubDetails>{item['재학기간']}</DataSubDetails>
-              <DataSubDetails>{item['소재지']}</DataSubDetails>
+              <DetailsWrapper>
+                <DataDetails>{item['전공 및 수료과정']}</DataDetails>
+                <DataSubDetails>{item['재학기간']}</DataSubDetails>
+                <DataSubDetails>{item['소재지']}</DataSubDetails>
+              </DetailsWrapper>
             </>
           )}
           {isSocialData(item) && (
             <>
               <DataLabel>{item['활동구분']}</DataLabel>
-              <DataDetails>{item['활동내용']}</DataDetails>
-              <DataSubDetails>{item['활동기간']}</DataSubDetails>
-              <DataSubDetails>{item['기관']}</DataSubDetails>
+              <DetailsWrapper>
+                <DataDetails>{item['활동내용']}</DataDetails>
+                <DataSubDetails>{item['활동기간']}</DataSubDetails>
+                <DataSubDetails>{item['기관']}</DataSubDetails>
+              </DetailsWrapper>
             </>
           )}
           {isAwardData(item) && (
             <>
               <DataLabel>{item['수상명']}</DataLabel>
-              <DataDetails>{item['내용']}</DataDetails>
-              <DataSubDetails>{item['수상일자']}</DataSubDetails>
-              <DataSubDetails>{item['기관']}</DataSubDetails>
+              <DetailsWrapper>
+                <DataDetails>{item['내용']}</DataDetails>
+                <DataSubDetails>{item['수상일자']}</DataSubDetails>
+                <DataSubDetails>{item['기관']}</DataSubDetails>
+              </DetailsWrapper>
             </>
           )}
           {isCertificateData(item) && (
             <>
               <DataLabel>{item['자격증 및 면허']}</DataLabel>
-              <DataDetails>{item['급수 및 점수']}</DataDetails>
-              <DataSubDetails>{item['취득일자']}</DataSubDetails>
-              <DataSubDetails>{item['발행기관']}</DataSubDetails>
+              <DetailsWrapper>
+                <DataDetails>{item['급수 및 점수']}</DataDetails>
+                <DataSubDetails>{item['취득일자']}</DataSubDetails>
+                <DataSubDetails>{item['발행기관']}</DataSubDetails>
+              </DetailsWrapper>
             </>
           )}
         </Row>
@@ -80,6 +88,7 @@ const NewTable: React.FC<NewTableProps> = ({ data }) => {
     </TableWrapper>
   );
 };
+
 
 // 타입 가드 함수들
 function isSchoolData(item: NewTableData): item is SchoolData {
@@ -98,7 +107,6 @@ function isCertificateData(item: NewTableData): item is CertificateData {
   return '자격증 및 면허' in item;
 }
 
-// 스타일 정의
 const TableWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -107,13 +115,20 @@ const TableWrapper = styled.div`
 
 const Row = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Change to row for horizontal layout */
   margin-bottom: 16px;
+  align-items: flex-start; /* Align items at the start for better control */
 `;
 
 const DataLabel = styled.span`
   font-weight: bold;
   font-size: 18px;
+  margin-right: 16px; /* Add some space between label and details */
+`;
+
+const DetailsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const DataDetails = styled.span`

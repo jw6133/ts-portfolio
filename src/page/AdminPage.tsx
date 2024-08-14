@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { styled } from '@linaria/react';
 import { addPortfolioData, onUserState, googleLogin, googleLogOut, uploadFile, User } from '../api/firebase';
-import Head from '../components/Head';
+import PortfolioHead from '../components/portfolio_c/PortfolioHead';
 
 const AdminPage: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -66,7 +66,7 @@ const AdminPage: React.FC = () => {
   if (!user) {
     return (
       <>
-        <Head />
+        <PortfolioHead/>
         <Container>
           <h2>Admin Login</h2>
           <Button onClick={handleLogin}>Login with Google</Button>
@@ -78,7 +78,7 @@ const AdminPage: React.FC = () => {
   if (!user.isAdmin) {
     return (
       <>
-        <Head />
+        <PortfolioHead/>
         <Container>
           <h2>Access Denied</h2>
           <p>You do not have permission to access this page.</p>
@@ -90,7 +90,7 @@ const AdminPage: React.FC = () => {
 
   return (
     <>
-      <Head />
+      <PortfolioHead />
       <Container>
         <h2>Add New Portfolio Data</h2>
         <Form onSubmit={handleSubmit}>
