@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { styled } from '@linaria/react';
 import NewTable from '../components/infomation_c/NewTable';
-import { SchoolData, SocialData, AwardData, CertificateData } from '../components/infomation_c/NewTable';
+import { SchoolData, SocialData, AwardData, CertificateData, EtcData } from '../components/infomation_c/NewTable';
 
 const Information: React.FC = () => {
   const infoCellRef = useRef<HTMLDivElement | null>(null);
@@ -45,6 +45,11 @@ const Information: React.FC = () => {
     { '취득일자': '2023.06.09', '자격증 및 면허': '정보처리기사', '급수 및 점수': '', '취득번호': '23201010962F', '발행기관': '한국산업인력공단' },
   ];
 
+  const EtcData: EtcData[]=[
+    { '분류': '장애', '상태':'6급', '세부분류' : '뇌병변장애' },
+    { '분류': '병역', '상태': '면제', '세부분류' : '5급' }
+  ];
+
   return (
     <>
       <InformationWrapper ref={infoCellRef}>
@@ -70,6 +75,12 @@ const Information: React.FC = () => {
           <span className='sectionTitle'>자격사항 및 어학능력</span>
           <div className='TableWrapper'>
             <NewTable data={certificateData} />
+          </div>
+        </div>
+        <div className='InfoCell'>
+          <span className='sectionTitle'>기타 사항</span>
+          <div className='TableWrapper'>
+            <NewTable data={EtcData} />
           </div>
         </div>
       </InformationWrapper>

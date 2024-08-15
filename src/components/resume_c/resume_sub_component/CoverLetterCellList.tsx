@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { styled } from '@linaria/react';
 import { getResumeData } from '../../../api/firebase';
 
@@ -6,9 +6,6 @@ interface CoverLetterCellProps {
   id: number;
   title: string;
   value: string;
-  onTitleChange: (id: number, title: string) => void;
-  onChange: (id: number, value: string) => void;
-  onDelete: (id: number) => void;
 }
 
 interface FirebaseData {
@@ -20,32 +17,17 @@ interface FirebaseData {
   text3: string;
 }
 
-const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ id, title, value, onTitleChange, onChange, onDelete }) => {
+const CoverLetterCell: React.FC<CoverLetterCellProps> = ({ title, value }) => {
   return (
-    <CoverLetterCellWrapper>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => onTitleChange(id, e.target.value)}
-        placeholder="제목을 입력하세요"
-        className="titleInput"
-      />
-      <textarea
-        value={value}
-        onChange={(e) => onChange(id, e.target.value)}
-        placeholder="내용을 입력하세요"
-      />
-      <div className="footer">
-        <span>{value.length}자</span>
-        <button onClick={() => onDelete(id)}>삭제</button>
-      </div>
+    <CoverLetterCellWrapper className='coverLetter'>
+      <h3>{title}</h3>
+      <p>{value}</p>
     </CoverLetterCellWrapper>
   );
 };
 
 const CoverLetterCellList: React.FC = () => {
   const [inputs, setInputs] = useState<{ id: number; title: string; value: string }[]>([]);
-  const [nextId, setNextId] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,44 +40,43 @@ const CoverLetterCellList: React.FC = () => {
           { id: 3, title: data.title3, value: data.text3 },
         ];
         setInputs(formattedData);
-        setNextId(formattedData.length + 1);
       }
     };
 
     fetchData();
   }, []);
 
-  const handleAdd = () => {
-    setInputs([...inputs, { id: nextId, title: '', value: '' }]);
-    setNextId(nextId + 1);
-  };
+  const coverLetterCellRef = useRef<HTMLDivElement | null>(null);
 
-  const handleTitleChange = (id: number, title: string) => {
-    setInputs(inputs.map(input => (input.id === id ? { ...input, title } : input)));
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        } else {
+          entry.target.classList.remove('fade-in');
+        }
+      });
+    }, { threshold: 0.1 });
 
-  const handleChange = (id: number, value: string) => {
-    setInputs(inputs.map(input => (input.id === id ? { ...input, value } : input)));
-  };
+    const items = coverLetterCellRef.current?.querySelectorAll('.coverLetter');
+    items?.forEach(item => observer.observe(item));
 
-  const handleDelete = (id: number) => {
-    setInputs(inputs.filter(input => input.id !== id));
-  };
+    return () => {
+      items?.forEach(item => observer.unobserve(item));
+    };
+  }, []);
 
   return (
-    <Container>
+    <Container ref={coverLetterCellRef}>
       {inputs.map(input => (
         <CoverLetterCell
           key={input.id}
           id={input.id}
           title={input.title}
           value={input.value}
-          onTitleChange={handleTitleChange}
-          onChange={handleChange}
-          onDelete={handleDelete}
         />
       ))}
-      <AddButton onClick={handleAdd}>+ 추가</AddButton>
     </Container>
   );
 };
@@ -104,70 +85,37 @@ export default CoverLetterCellList;
 
 const Container = styled.div`
   width: 100%;
-  max-width: 600px;
+  max-width: 1600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  padding: 20px;
 `;
 
 const CoverLetterCellWrapper = styled.div`
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #C8D8E7; 
+  color: #03152D;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 
-  .titleInput {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-    box-sizing: border-box;
-    font-weight: bold;
+  &.fade-in {
+    opacity: 1;
   }
 
-  textarea {
-    width: 100%;
-    height: 100px;
-    border: none;
-    resize: none;
-    outline: none;
-    padding: 10px;
-    box-sizing: border-box;
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #224F75; 
   }
 
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-
-    span {
-      font-size: 14px;
-      color: #999;
-    }
-
-    button {
-      background: none;
-      border: none;
-      color: #007bff;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-`;
-
-const AddButton = styled.button`
-  background: none;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f0f0f0;
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #256279; 
+    white-space: pre-wrap;
   }
 `;
