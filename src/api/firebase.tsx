@@ -8,12 +8,6 @@ import {
   User as FirebaseUser,
 } from "firebase/auth";
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
   DocumentData,
 } from "firebase/firestore";
 import {
@@ -41,7 +35,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
-const firestore = getFirestore(app);
 const database = getDatabase(app);
 const storage = getStorage(app);
 

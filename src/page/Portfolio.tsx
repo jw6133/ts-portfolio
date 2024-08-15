@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { styled } from '@linaria/react';
 import MainSwiper from '../components/portfolio_c/MainSwiper';
 import PortfolioCell from '../components/portfolio_c/PortfolioCell';
