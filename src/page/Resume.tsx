@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { styled } from '@linaria/react';
 import CoverLetterCellList from '../components/resume_c/resume_sub_component/CoverLetterCellList';
 import { SectionTitle } from '../components/portfolio_c/PortfolioCell';
