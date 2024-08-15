@@ -76,7 +76,7 @@ const PhotoContainer = styled.div`
 `;
 
 const StyledSwiper = styled(Swiper)`
-    height: 480px;
+    height: 560px;
     margin: 0 auto;
 `;
 
@@ -96,7 +96,7 @@ const SlideContent = styled.div`
 const StyledImg = styled.img`
     width: 100%;
     max-width: 1820px;
-    height: 480px;
+    height: 100%;
     object-fit: cover; // 이미지가 고정된 크기에 맞게 잘리거나 확대되도록 설정
     transition: opacity 0.3s ease-in-out;
 `;

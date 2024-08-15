@@ -31,8 +31,14 @@ export interface CertificateData {
   '발행기관': string;
 }
 
+export interface EtcData {
+  '분류': string;
+  '상태': string;
+  '세부분류' : string;
+}
+
 // TableData는 위의 타입 중 하나를 가질 수 있습니다.
-type NewTableData = SchoolData | SocialData | AwardData | CertificateData;
+type NewTableData = SchoolData | SocialData | AwardData | CertificateData | EtcData;
 
 interface NewTableProps {
   data: NewTableData[];
@@ -83,6 +89,15 @@ const NewTable: React.FC<NewTableProps> = ({ data }) => {
               </DetailsWrapper>
             </>
           )}
+          {isEtcData(item) && (
+            <>
+              <DataLabel>{item['분류']}</DataLabel>
+              <DetailsWrapper>
+                <DataDetails>{item['상태']}</DataDetails>
+                <DataSubDetails>{item['세부분류']}</DataSubDetails>
+              </DetailsWrapper>
+            </>
+          )}
         </Row>
       ))}
     </TableWrapper>
@@ -105,6 +120,10 @@ function isAwardData(item: NewTableData): item is AwardData {
 
 function isCertificateData(item: NewTableData): item is CertificateData {
   return '자격증 및 면허' in item;
+}
+
+function isEtcData(item: NewTableData): item is EtcData {
+  return '분류' in item;
 }
 
 const TableWrapper = styled.div`
@@ -133,7 +152,6 @@ const DetailsWrapper = styled.div`
 
 const DataDetails = styled.span`
   font-size: 16px;
-  margin-top: 4px;
 `;
 
 const DataSubDetails = styled.span`

@@ -84,7 +84,7 @@ const HeadWrapper = styled.div`
         cursor: pointer;
 
         &:hover {
-            color: yellow;
+            color: #8AD0E7;
         }
     }
 `;
