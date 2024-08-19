@@ -37,7 +37,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({ fadeIn }) => {
     return (
         <SideContentWrapper className={fadeIn ? 'fade-in' : ''}>
             <div className='sideHead'>
-                <img className='face-photo' src='photo/main_human_face.jpg' alt='내 얼굴' />
+                <img className='face-photo' src='/photo/main_human_face.jpg' alt='내 얼굴' />
                 <span className='name'>백지웅</span>
                 <span className='status'>가톨릭대학교 컴퓨터정보공학부</span>
             </div>
@@ -63,8 +63,9 @@ const SideContentWrapper = styled.div`
     position:relative;
     color:white;
     background-color:rgba(94,94,94,0.7);
-    height:100vh;
+    height:110vh;
     .sideHead{
+        margin-top:6%;
         position:relative;
         display:flex;
         .face-photo{
@@ -131,7 +132,7 @@ const SideContentWrapper = styled.div`
         color:white;
         display:flex;
         position:absolute;
-        bottom:-30%;
+        bottom:15%;
         right:5%;
         .icon30{
             font-size:30px;

@@ -34,7 +34,7 @@ export interface CertificateData {
 export interface EtcData {
   '분류': string;
   '상태': string;
-  '세부분류' : string;
+  '세부분류': string;
 }
 
 // TableData는 위의 타입 중 하나를 가질 수 있습니다.
@@ -104,7 +104,6 @@ const NewTable: React.FC<NewTableProps> = ({ data }) => {
   );
 };
 
-
 // 타입 가드 함수들
 function isSchoolData(item: NewTableData): item is SchoolData {
   return '학교명' in item;
@@ -129,25 +128,31 @@ function isEtcData(item: NewTableData): item is EtcData {
 const TableWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding:16px;
 `;
 
 const Row = styled.div`
   display: flex;
-  flex-direction: row; /* Change to row for horizontal layout */
+  flex-direction: row;
   margin-bottom: 16px;
-  align-items: flex-start; /* Align items at the start for better control */
+  align-items: center; /* 수직 중앙 정렬 */
 `;
 
 const DataLabel = styled.span`
   font-weight: bold;
-  font-size: 18px;
-  margin-right: 16px; /* Add some space between label and details */
+  font-size: 24px;
+  margin-right: 16px;
+  word-break: keep-all;
+  line-height: 1.2;
+  width: 280px; /* '포용성장 전문연구인력양성사업'의 길이를 기준으로 고정된 너비 설정 */
+  display: flex;
+  align-items: center; /* 상하 중앙 정렬 */
 `;
 
 const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center; /* 수직 중앙 정렬 */
 `;
 
 const DataDetails = styled.span`
