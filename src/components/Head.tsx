@@ -39,6 +39,7 @@ const HeadWrapper = styled.div`
     left: 0;
     height: 60px;
     background-color: #4e7290;
+    color:white;
     width: 100%;
     z-index: 3;
     .mainLogo {
